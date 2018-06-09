@@ -1,8 +1,8 @@
 bilingual Table(双语表)
 ==========================
 Github    “社交编程及代码托管网站”  
-Search or jump to...    查找或跳转到...   
-Pull requests   拉取请求    
+Search or jump to...    查找或跳转到...  
+Pull requests   拉取请求  
 Issues    “问题”	
 Marketplace   “市场”		
 Explore    “探索”			
