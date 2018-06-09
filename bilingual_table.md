@@ -1,11 +1,11 @@
 bilingual Table(双语表)
 ==========================
-Github    “社交编程及代码托管网站”
-Search or jump to...    查找或跳转到...
-Pull requests   拉取请求
-Issues    “问题”
-Marketplace   “市场”
-Explore    “探索”
+Github    “社交编程及代码托管网站”  
+Search or jump to...    查找或跳转到...   
+Pull requests   拉取请求    
+Issues    “问题”	
+Marketplace   “市场”		
+Explore    “探索”			
 铃铛的图标，表示通知
   You have no unread notifications.   你没有未读通知。
 加号图标
@@ -36,7 +36,8 @@ Read th guide   Start a project
 # Custom domains on GitHub Pages gain support for HTTPS.
   GitHub页面上自定义域获得对HTTPS的支持
 ## View new broadcasts    查看新的广播
-# Repositories    仓库列表，可以在此查看、搜索、新建仓库。
+# Repositories    
+仓库列表，可以在此查看、搜索、新建仓库。
 
 内容
 ----
@@ -102,10 +103,7 @@ GitHub上受欢迎的仓库列表，可以进行星星标注
 1.呜呜呜呜
   
 [This link](http://example.net/)
-[This link](http://example.net/"example")...
 [This link](http://example.net/ "example")...
-[This link](http://example.net/)"example"...
-[This link](http://example.net/) "example" ...
 
 This is [an example][id] reference-style link
 [Markdown](http://wowubuntu.com/markdown/index.html "markdown网页")
@@ -116,8 +114,3 @@ This is [an example][id] reference-style link
 
 
 [![image]](http://www.example.com/) [image]: http://example.com/example.png “example“
-
-
-
-
-
