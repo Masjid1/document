@@ -1,8 +1,8 @@
 
 ### 兼容 HTML
 Markdown是纯文本文件，其中可以使用html语言，html语言内部忽略Markdown语法(因此**示例1**中的Markdown不会加粗)。   
-HTML 区块元素――比如< div>、< table>、< pre>、< p>等标签，必须在前后加上空行与其它内容区隔开，还要求它们的开始标签与结尾标签不能用制表符或空格来缩进。  
-**注意**：要想让字符原样输出，而不转义成html语言，可在<与标签内容之间加一空格,这样就不是html标签了，再加上Markdown忽略单个空格，所以看上去就是标签字符串。   
+HTML 区块元素――比如`<div>、<table>、<pre>、<p>`等标签，必须在前后加上**空行**与其它内容区隔开，还要求它们的开始标签与结尾标签**不能用制表符或空格来缩进**。  
+**注意**：要想让字符原样输出，而不转义成html语言，可在将需要原样输出的语句用反引号\`包裹起来，Markdown会将其替换成`<code>`标签。   
 （在Sublime Text 3中，正常语句显示成白色，html标签显示成红色，转义字符为蓝紫色。）  
 
 ---
@@ -24,24 +24,25 @@ HTML 区块元素――比如< div>、< table>、< pre>、< p>等标签，必须
 &copy;
 
 ### 特殊字符自动转换
-html中由于**<**是标签符号，所以只能使用& lt;,markdown中既可以直接使用<，也可以使用转义后的& lt;。   
+html中由于<是标签符号，所以只能使用`&lt;`,markdown中既可以直接使用<，也可以使用转义后的`&lt;`。   
 
 ---
 
 **示例2:**
 
-4 < 5  Markdown会将其转换为：  4 & lt; 5   
+4 < 5  Markdown会将其转换为：  4 `&lt;` 5   
 
 ## 区块元素
 ### 段落
 一个 Markdown 段落是由**一个或多个连续的**文本行组成，它的前后要有一个以上的**空行**
 （空行的定义是<u>显示上看起来像是空的，便会被视为空行</u>。
 比方说，若某一行只包含空格和制表符，则该行也会被视为空行）。   
-Markdown中除了特定的语法中使用的空白符有效外，其他地方使用空白符没有意义。   
+Markdown中空白符在很多语法中都有运用，需要小心灵活运用。     
 因此，普通段落不该用空格或制表符来缩进。   
 
-### 段落和换行
-两个或更多空格加回车，其相对于<br/>的优点是方便阅读,但两种写法的效果是一样的。   
+### 换行
+两个或更多空格加回车，相当于`<br/>`。   
+其优点是方便阅读,但两种写法的效果是一样的。   
 
 ### 标题
 类 Setext 形式是用底线的形式，利用 = （最高阶标题）和 - （第二阶标题），如**示例3**。
@@ -118,16 +119,13 @@ Markdown 支持有序列表和无序列表。
 *   Red
 *   Green
 *   Blue
-
 + Red
 + Green
 + Blue
-
 +Red
 +Green
 +Blue
 (单独一个换行，之前无两个空格，则视为一个空格分隔符。)
-
 - Red
 -	Green
 -	Blue
@@ -142,9 +140,9 @@ Markdown 支持有序列表和无序列表。
 
 
 <ol>
-<li>Bird</li>
-<li>McHale</li>
-<li>Parish</li>
+	<li>Bird</li>
+	<li>McHale</li>
+	<li>Parish</li>
 </ol>
 
 *   Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
@@ -163,11 +161,10 @@ Suspendisse id sem consectetuer libero luctus adipiscing.
 
 ---
 + 如果列表项目间用空行分开，在输出HTML时，Markdown就会将项目内容用< p>标签包起来，举例来说：
-
 *   Bird
 *   Magic
 
-会被转换为：?????????
+会被转换为：
 
 	<ul>
 		<li>Bird</li>
@@ -175,7 +172,6 @@ Suspendisse id sem consectetuer libero luctus adipiscing.
 	<ul>
 
 但是这个：
-
 *   Bird
 
 *   Magic
@@ -183,8 +179,8 @@ Suspendisse id sem consectetuer libero luctus adipiscing.
 会被转换为：
 
 	<ul>
-		<li><p>Bird</p></li>
-		<li><p>Magic</p></li>
+	  <li><p>Bird</p></li>
+	  <li><p>Magic</p></li>
 	</ul>
 
 ---
@@ -216,17 +212,20 @@ sit amet, consectetuer adipiscing elit.
 	> This is a blockquote
 	>
 	> inside a list item.
-	> 这一句和上一句在同一行内
+	> 这一句和上一句在同一行内。
+	>
+	> 此引用在列表内
 
 > This is a blockquote
 >
 > inside a list item.
-> 这一句和上一句在同一行内
+> 这一句和上一句在同一行内。
+>
+> 此引用与上面的列表并列。
 
++ 如果要放代码区块的话，该区块就需要缩进两次，也就是 8 个空格或是 2 个制表符，且首尾有空行：
 
-+ 如果要放代码区块的话，该区块就需要缩进两次，也就是 8 个空格或是 2 个制表符：
-
-*   一列表项包含一个列表区块：
+*   列表项包含一个代码区块：
 
         <font>font</font>
         上面一行代码，是一个段落，因为前后有空行，每行有缩进。
@@ -242,10 +241,10 @@ sit amet, consectetuer adipiscing elit.
 1986\. What a great season.   
 
 ### 代码区块
-和程序相关的写作或是标签语言原始码通常会有已经排版好的代码区块，通常这些区块我们并不希望它以一般段落文件的方式去排版，而是照原来的样子显示，Markdown 会用 < pre> 和 < code > 标签来把代码区块包起来。   
-如果代码一行长于页面宽度，会有横向滑动条。   
-在代码区块里面， & 、 < 和 > 会自动转成 HTML 实体，这样的方式让你非常容易使用 Markdown 插入范例用的 HTML 原始码，只需要复制贴上，再加上缩进就可以了，剩下的 Markdown 都会帮你处理。   
-要在 Markdown 中建立代码区块很简单，只要简单地缩进 4 个空格或是 1 个制表符就可以。   
+程序代码通常具有自己的排版，要想原样展示而非以一般段落的方式排版，Markdown会用`<pre>`和`<code>`标签来把代码区块包起来。   
+如果代码一行长于页面宽度，会有*横向滑动条*。   
+在代码区块里面，&、<和>会自动转成HTML实体，Markdown插入范例用的HTML代码，粘贴后加上**缩进**就可以了，剩下的 Markdown 都会自动处理。   
+要在 Markdown 中建立代码区块很简单，只要简单地**缩进 4 个空格或是 1 个制表符**就可以。   
 一个代码区块会一直持续到没有缩进的那一行（或是文件结尾）。   
 例如，下面的输入：   
 
@@ -279,7 +278,8 @@ Here is an example of AppleScript:
 	</code></pre>
 
 ### 分隔线
-你可以在一行中用三个以上的星号、减号、底线来建立一个分隔线，行内不能有其他东西。你也可以在星号或是减号中间插入空格。下面每种写法都可以建立分隔线：   
+你可以在一行中用三个以上的星号、减号、底线(标题使用的分割线)来建立一个分隔线，行内不能有其他东西，但可在星号或是减号中间插入空格。   
+下面每种写法都可以建立分隔线：   
 
 * * *
 
@@ -291,7 +291,7 @@ Here is an example of AppleScript:
 
 - - -
 
---------------------------------------
+------------------------------------
 
 
 ## 区段元素
@@ -411,41 +411,39 @@ than from [Yahoo](http://search.yahoo.com/ "Yahoo Search") or
 使用 Markdown 的参考式链接，可以让文件更像是浏览器最后产生的结果，让你可以把一些标记相关的元数据移到段落文字之外，你就可以增加链接而不让文章的阅读感觉被打断。
 
 ### 强调
-
-Markdown 使用星号（* ）和底线（_ ）作为标记强调字词的符号，被 * 或 _ 包围的字词会被转成用 < em> 标签包围(**包围**的意思是**必须紧挨着内容**)，用两个 * 或 _ 包起来的话，则会被转成 < strong>，例如：   
+_____
+Markdown 使用星号（\*）和底线（\_）作为标记强调字词的符号，被\* 或\_ 包围的字词会被转成用`<em>`标签包围(**包围**的意思是**必须紧挨着内容**)，用两个\* 或\_ 包起来的话，则会被转成 `<strong>`，例如：   
 
 
 *single asterisks*
-
 _single underscores_
 
 **double asterisks**
-
 __double underscores__
+
 会转成：
 
 	<em>single asterisks</em>
-
 	<em>single underscores</em>
 
 	<strong>double asterisks</strong>
-
 	<strong>double underscores</strong>
 
 你可以随便用你喜欢的样式，唯一的限制是，**你用什么符号开启标签，就要用什么符号结束。**
-
-强调也**可以直接插在文字中间**：
-
-un*frigging*believable
-
-但是如果你的 * 和 _ 两边都有空白的话，它们就只会被当成普通的符号。
-
+  
+斜体、强调也**可以直接插在文字中间**：  
+un*frigging*believable  
+un**frigging**believable  
+但是如果你的 * 和 _ 两边都有空白的话，它们就只会被当成普通的符号。  
+un* frigging* believable  
+un** frigging** believable  
+   
 如果要在文字前后直接插入普通的星号或底线，你可以用反斜线转义：
 
 \*this text is surrounded by literal asterisks\*
 
 ### 代码
-如果要标记一小段行内代码，你可以用反引号把它包起来（\`），例如：   
+如果要标记一小段行内代码，你可以用**一个或多个反引号(\`)**把它包起来,但前后必须一致，例如：   
 
 
 Use the `printf()` function.
@@ -454,7 +452,7 @@ Use the `printf()` function.
 
 	<p>Use the <code>printf()</code> function.</p>
 
-如果要在代码区段内插入反引号，你可以用多个反引号来开启和结束代码区段：
+如果要在代码区段内**插入反引号**，你可以用多个反引号来开启和结束代码区段：
 
 ``There is a literal backtick (`) here.``
 这段语法会产生：
@@ -465,22 +463,20 @@ Use the `printf()` function.
 
 A single backtick in a code span: `` ` ``
 
-A backtick-delimited string in a code span: `` `foo` ``
-会产生：
+A backtick-delimited string in a code span: `` `foo` ``会产生：
 
 	<p>A single backtick in a code span: <code>`</code></p>
 
 	<p>A backtick-delimited string in a code span: <code>`foo`</code></p>
 
-在代码区段内，& 和尖括号都会被自动地转成 HTML 实体，这使得插入 HTML 原始码变得很容易，Markdown 会把下面这段：
+在代码区段内,&和尖括号都会被自动地转成 HTML 实体，这使得插入 HTML 原始码变得很容易，Markdown 会把下面这段：
 
 Please don't use any `<blink>` tags.
 转为：
 
 	<p>Please don't use any <code>&lt;blink&gt;</code> tags.</p>
 
-你也可以这样写：
-
+你也可以这样写：  
 `&#8212;` is the decimal-encoded equivalent of `&mdash;`.
 以产生：
 
@@ -488,65 +484,116 @@ Please don't use any `<blink>` tags.
 	equivalent of <code>&amp;mdash;</code>.</p>
 
 ### 图片
-很明显地，要在纯文字应用中设计一个「自然」的语法来插入图片是有一定难度的。
+以链接形式插入图片，链接的行内式、参考式皆可。
 
-Markdown 使用一种和链接很相似的语法来标记图片，同样也允许两种样式： 行内式和参考式。
+行内式的图片语法看起来像是：  
 
-行内式的图片语法看起来像是：
+![壁纸 1](/img/wallpaper1.jpg)
 
-![Alt text](/path/to/img.jpg)
+![壁纸 2](/img/wallpaper2.jpg "wallpaper 2")
 
-![Alt text](/path/to/img.jpg "Optional title")
 详细叙述如下：
 
-一个惊叹号 !
+	![alt text](photo_url)
+	![alt text](photo_url "title")
+
+一个惊叹号!
 接着一个方括号，里面放上图片的替代文字
 接着一个普通括号，里面放上图片的网址，最后还可以用引号包住并加上 选择性的 'title' 文字。
-参考式的图片语法则长得像这样：
 
-![Alt text][id]
-「id」是图片参考的名称，图片参考的定义方式则和连结参考一样：
+---
+参考式的插入图片语法如下：  
 
-[id]: url/to/image  "Optional title attribute"
-到目前为止， Markdown 还没有办法指定图片的宽高，如果你需要的话，你可以使用普通的 <img> 标签。
+	![Alt text 1][]
+		提示文本(Alt text)就是参考名称		
+	![Alt text 2][id]
+		「id」是图片参考的名称，图片参考的定义与链接参考一样：
+
+	[Alt text 1]: url/to/image  "Optional title attribute"
+	[id]: url/to/image  "Optional title attribute"
+
+**示例**
+
+！[退不可得][]
+！[不如进取][brjq]
+
+[退不可得]: img/退不可得.jpg "狄龙-英雄本色"
+[nrjq]: img/不如进取.jpg "Mark哥-英雄本色"
+
+到目前为止， Markdown 还没有办法指定图片的宽高，如果你需要的话，你可以使用普通的 `<img>`标签。
 
 ## 其它
 ### 自动链接
-Markdown 支持以比较简短的自动链接形式来处理网址和电子邮件信箱，只要是用尖括号包起来， Markdown 就会自动把它转成链接。一般网址的链接文字就和链接地址一样，例如：
+Markdown 支持以比较简短的自动链接形式来处理网址和电子邮件信箱，只要用尖括号包起来， Markdown 就会自动把它转成链接。  
+一般网址的链接文字就和链接地址一样，例如：
 
-<http://example.com/>
+<http://example.com/>  
+
 Markdown 会转为：
 
 	<a href="http://example.com/">http://example.com/</a>
-邮址的自动链接也很类似，只是 Markdown 会先做一个编码转换的过程，把文字字符转成 16 进位码的 HTML 实体，这样的格式可以糊弄一些不好的邮址收集机器人，例如：
+
+邮址的自动链接也很类似，只是 Markdown 会先做一个编码转换的过程，把文字字符转成 16进位码的 HTML 实体，这样的格式可以糊弄一些不好的邮址收集机器人，例如：
 
 <address@example.com>
+
 Markdown 会转成：
 
-	<a href="&#x6D;&#x61;i&#x6C;&#x74;&#x6F;:&#x61;&#x64;&#x64;&#x72;&#x65;
-	&#115;&#115;&#64;&#101;&#120;&#x61;&#109;&#x70;&#x6C;e&#x2E;&#99;&#111;
-	&#109;">&#x61;&#x64;&#x64;&#x72;&#x65;&#115;&#115;&#64;&#101;&#120;&#x61;
-	&#109;&#x70;&#x6C;e&#x2E;&#99;&#111;&#109;</a>
-在浏览器里面，这段字串（其实是 `<a href="mailto:address@example.com">address@example.com</a>`）会变成一个可以点击的「address@example.com」链接。
+	<a href="&#x6D;&#x61;&#x69;&#x6C;&#x74;&#x6F;&#x3A;
+		&#x61;&#x64;&#x64;&#x72;&#x65;&#x73;&#x73;&#x40;
+		&#x65;&#x78;&#x61;&#x6d;&#x70;&#x6C;&#x65;&#x2E;
+		&#x63;&#x6F;&#x6D;">
+		&#x61;&#x64;&#x64;&#x72;&#x65;&#x73;&#x73;&#x40;
+		&#x65;&#x78;&#x61;&#x6d;&#x70;&#x6C;&#x65;&#x2E;
+		&#x63;&#x6F;&#x6D
+	</a>
 
-（这种作法虽然可以糊弄不少的机器人，但并不能全部挡下来，不过总比什么都不做好些。不管怎样，公开你的信箱终究会引来广告信件的。）
+在浏览器里面，这段字串（其实是 `<a href="mailto:address@example.com">address@example.com</a>`）会变成一个可以点击的「address@example.com」链接。
 
 ### 反斜杠
 Markdown 可以利用反斜杠来插入一些在语法中有其它意义的符号，例如：如果你想要用星号加在文字旁边的方式来做出强调效果（但不用 `<em> `标签），你可以在星号的前面加上反斜杠：
 
-\*literal asterisks\*
+\*literal asterisks\*   
 Markdown 支持以下这些符号前面加上反斜杠来帮助插入普通的符号：
+1. \\   反斜线
+1. \`   反引号
+1. \*   星号
+1. \_   底线
+1. \{\}  花括号
+1. \[\]  方括号
+1. \(\)  括弧
+1. \#   井字号
+1. \+   加号
+1. \-   减号
+1. \.   英文句点
+1. \!   惊叹号
 
-\\   反斜线
-\`   反引号
-\*   星号
-\_   底线
-\{\}  花括号
-\[\]  方括号
-\(\)  括弧
-\#   井字号
-\+   加号
-\-   减号
-\.   英文句点
-\!   惊叹号
-此外还需要注意空白符的使用。
+## 注意
++  注意空白符的使用。
++  **段落、html语言**：首尾有空行，内容顶格写。
++  **代码区块**：首尾有空行，内容缩进4个空格或1个制表符。
++  **列表中的每个段落、引用**：内容缩进4个空格或1个制表符。
++  **列表中的代码区块**：首尾有空行，内容缩进8个空格或2个制表符。
++  **非1开始的有序列表**：首尾有空行。
++  **无序列表、1开始的有序列表**：首部无需空行，尾部无空格可能影响后面文本的显示，所以最好还是首尾有空行。  
+
+## test
+*  **<**
+*  **8**
+*  **=**
+*  **+**
+*  **\+**
+*  **壹**
+*  `<p>Please don't use any **<code>&lt;blink&gt;</code>** tags.</p>`
+
+	<p>Please don't use any **<code>&lt;blink&gt;</code>** tags.</p>
+	<p>Please don't use any **<code>&lt;blink&gt;</code>** tags.</p>
+	<p>Please don't use any **<code>&lt;blink&gt;</code>** tags.</p>
+
+<p>Please don't use any **<code>&lt;blink&gt;</code>** tags.</p>
+<p>Please don't use any **<code>&lt;blink&gt;</code>** tags.</p>
+<p>Please don't use any **<code>&lt;blink&gt;</code>** tags.</p>
+	 
+	<p>Please don't use any **<code>&lt;blink&gt;</code>** tags.</p>
+	<p>Please don't use any **<code>&lt;blink&gt;</code>** tags.</p>
+	<p>Please don't use any **<code>&lt;blink&gt;</code>** tags.</p>
