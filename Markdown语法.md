@@ -243,21 +243,21 @@ sit amet, consectetuer adipiscing elit.
 md原生表格，两侧可以加竖线，也可以省略。  
 **表 1**
 
-|符号	|对其方式	|		|-		|:-		|-:		|:-:	|
-|:-	 	|-:			|		|-		|:-		|-:		|:-:	|
-|默认	|左对齐		|1		|1		|1		|1		|1		|
-|-		|左对齐		|12		|12		|12		|12		|12		|
-|:-		|左对齐		|123	|123	|123	|123	|123	|
-|-:		|右对齐		|1234	|1234	|1234	|1234	|1234	|
-|:-:	|居中对齐	|12345	|12345	|12345	|12345	|12345	|
+| 符号	| 对其方式	|		| -		| :-	| -:	| :-:	|
+| :-	| -:		|		| -		| :-	| -:	| :-:	|
+| 默认	| 左对齐		| 1		| 1		| 1		| 1		| 1		|
+| -		| 左对齐		| 12	| 12	| 12	| 12	| 12	|
+| :-	| 左对齐		| 123	| 123	| 123	| 123	| 123	|
+| -:	| 右对齐		| 1234	| 1234	| 1234	| 1234	| 1234	|
+| :-:	| 居中对齐	| 12345	| 12345	| 12345	| 12345	| 12345	|
 
 **表 2**
 
-Name | Academy | score |  mark
-- | :-: | -:  | :-
-Harry Potter | Gryffindor| 90 | 1234 
-Hermione Granger | Gryffindor | 100  | 12
-Draco Malfoy | Slytherin | 90  | -1
+Name 				| Academy 		| score |  mark
+- 					| :-: 			| -:  	| :-
+Harry Potter 		| Gryffindor 	| 90 	| 1234 
+Hermione Granger 	| Gryffindor 	| 100  	| 12
+Draco Malfoy 		| Slytherin 	| 90  	| -1
 
 **表 3**
 
@@ -283,7 +283,13 @@ C --> |no| B
 
 	定义元素的语法：
 		tag=>type: content:>url
-	tag是元素名字, type是元素类型(6种: start, end, operation, condition, subroutine子程序, inputoutput),空格不可省, 文本内容, url是一个连接。
+	tag是元素名字,  
+	=>表示赋值，  
+	type是元素类型(6种: start, end, operation, condition, subroutine子程序, inputoutput),  
+	空格不可省,   
+	content是文本内容,  
+	:>表示连接,   
+	url是一个连接内容, 连接(:>url)兼容性很差，一般不写连接。
 
 	连接元素的语法：
 	tag1->tag2->...->tagn
@@ -294,15 +300,24 @@ C --> |no| B
 
 ```flow
 st=>start: 开始
-op=>operation: 输入x
-op2=>operation: 输入y
-op3=>operation: 计算z=x+y
+ix=>inputoutput: 输入x
+iy=>inputoutput: 输入y
+opadd=>operation: 计算z=x+y
 cond=>condition: z>20?
-e=>end: 输出z
+oz=>inputoutput: 输出z
+e=>end: 结束
 
-st->op->op2->op3->cond
-cond(yes)->e
-cond(no)->op
+st->ix->iy->opadd->cond
+cond(yes)->oz->e
+cond(no)->ix
+```
+
+```flow
+st=>start: 开始
+ix=>inputoutput: 输入x
+e=>end: 结束
+
+st->ix->e
 ```
 
 **流程图 3**
@@ -341,13 +356,25 @@ cond5(no)->cond3
 op5->e
 ```
 
-### 反斜杠转义
-下面前两行是列表，第三行是普通语言。   
+### 时序图
+语法：关键字sequence，符号含义如下表，冒号空格后可以不写文字，但是冒号不能省。
 
-1986. What a great season.
-1986. What a great season.
 
-1986\. What a great season.   
+|符号				|含义			|
+|-					|实线			|
+|>					|实心箭头		|
+|--					|虚线			|
+|>>					|空心箭头		|
+|Note left of A 	|在A的左边注释	|
+|Note right of A 	|在A的右边边注释	|
+
+```sequence
+A->>B: 你好
+Note left of A: 我在左边     // 注释方向，只有左右，没有上下
+Note right of B: 我在右边
+B-->A: 很高兴认识你
+```
+
 
 ### 代码区块
 程序代码通常具有自己的排版，要想原样展示而非以一般段落的方式排版，Markdown会用`<pre>`和`<code>`标签来把代码区块包起来。   
@@ -663,6 +690,13 @@ Markdown 会转成：
 Markdown 可以利用反斜杠来插入一些在语法中有其它意义的符号，例如：如果你想要用星号加在文字旁边的方式来做出强调效果（但不用 `<em> `标签），你可以在星号的前面加上反斜杠：   
 \*literal asterisks\*   
 
+下面前两行是列表，第三行是普通语言。   
+
+1986. What a great season.
+1986. What a great season.
+
+1986\. What a great season.   
+
 Markdown 支持以下这些符号前面加上反斜杠来帮助插入普通的符号：
 1. \\   反斜线
 1. \`   反引号
@@ -676,6 +710,39 @@ Markdown 支持以下这些符号前面加上反斜杠来帮助插入普通的�
 1. \-   减号
 1. \.   英文句点
 1. \!   惊叹号
+
+### 公式
+默认右对齐，$左对齐，$$居中对齐。  
+
+$ x = {-b \pm \sqrt{b^2-4ac} \over 2a}. $[^1]
+$$ x = {-b \pm \sqrt{b^2-4ac} \over 2a}. $$
+x \href{why-equal.html}{=} y^2 + 1.[^2]
+
+[^1]: \pm：加减; \sqrt: 开方; \over: 除以;
+[^2]: 未知。
+
+### 锚点
+注：只有标题支持锚点， 跳转目录方括号后 保持空格   
+
+[公式标题锚点](#1)
+
+### [需要跳转的目录] {#1}    // 方括号后保持空格
+
+### 定义型列表
+注：解释型定义, 开头一个`:` + `Tab` 或 四个空格 
+
+Markdown 
+:	轻量级文本标记语言，可以转换成html，pdf等格式
+
+代码块定义
+:	代码块定义……
+
+		var a = 10;         // 保持空一行与 递进缩进
+
+### 生成侧边栏扩展
+注：生成侧边栏一般是插入JS，再就是模板,
+总体来说，很是麻烦，效果一般，不作详解。
+
 
 ## 注意
 +  注意空白符的使用。
