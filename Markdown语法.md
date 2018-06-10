@@ -513,8 +513,9 @@ Please don't use any `<blink>` tags.
 
 **示例**
 
-！[退不可得][]
-！[不如进取][brjq]
+![退不可得][]
+
+![不如进取][brjq]
 
 [退不可得]: img/退不可得.jpg "狄龙-英雄本色"
 [brjq]: img/不如进取.jpg "Mark哥-英雄本色"
