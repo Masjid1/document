@@ -1,4 +1,7 @@
 
+## [markdown中文文档](http://www.markdown.cn/)  
+标签 : Markdown
+
 ### 兼容 HTML
 Markdown是纯文本文件，其中可以使用html语言，html语言内部忽略Markdown语法(因此**示例1**中的Markdown不会加粗)。   
 HTML 区块元素――比如`<div>、<table>、<pre>、<p>`等标签，必须在前后加上**空行**与其它内容区隔开，还要求它们的开始标签与结尾标签**不能用制表符或空格来缩进**。  
@@ -35,7 +38,7 @@ html中由于<是标签符号，所以只能使用`&lt;`,markdown中既可以直
 ## 区块元素
 ### 段落
 一个 Markdown 段落是由**一个或多个连续的**文本行组成，它的前后要有一个以上的**空行**
-（空行的定义是<u>显示上看起来像是空的，便会被视为空行</u>。
+（空行的定义是*显示上看起来像是空的，便会被视为空行*。
 比方说，若某一行只包含空格和制表符，则该行也会被视为空行）。   
 Markdown中空白符在很多语法中都有运用，需要小心灵活运用。     
 因此，普通段落不该用空格或制表符来缩进。   
@@ -231,6 +234,112 @@ sit amet, consectetuer adipiscing elit.
         上面一行代码，是一个段落，因为前后有空行，每行有缩进。
         一行不缩进则是html。
 
+### 高级列表
+- [ ] Markdown语法简介
+- [x] Markdown高级语法
+
+### 表格
+表格可以使用md原生表格、html表格、excel表格。   
+md原生表格，两侧可以加竖线，也可以省略。  
+**表 1**
+
+|符号	|对其方式	|		|-		|:-		|-:		|:-:	|
+|:-	 	|-:			|		|-		|:-		|-:		|:-:	|
+|默认	|左对齐		|1		|1		|1		|1		|1		|
+|-		|左对齐		|12		|12		|12		|12		|12		|
+|:-		|左对齐		|123	|123	|123	|123	|123	|
+|-:		|右对齐		|1234	|1234	|1234	|1234	|1234	|
+|:-:	|居中对齐	|12345	|12345	|12345	|12345	|12345	|
+
+**表 2**
+
+Name | Academy | score |  mark
+- | :-: | -:  | :-
+Harry Potter | Gryffindor| 90 | 1234 
+Hermione Granger | Gryffindor | 100  | 12
+Draco Malfoy | Slytherin | 90  | -1
+
+**表 3**
+
+| 水果 	| 价格 	| 数量 |
+| ----- | -:	| :-:  |
+| 蕉 	| $1    |  5   |
+| 青苹果	| $1    |  61  |
+| 草莓 	| $1    | 789  |
+
+### 制作流程图
+
+**流程图 1**: 有道云流程图(mermaid语法)
+
+```
+graph TD
+
+A[Start] --> B[Your Operation]
+B --> C{Yes or No?}
+C --> |yes| D[end]
+C --> |no| B
+
+```
+
+	定义元素的语法：
+		tag=>type: content:>url
+	tag是元素名字, type是元素类型(6种: start, end, operation, condition, subroutine子程序, inputoutput),空格不可省, 文本内容, url是一个连接。
+
+	连接元素的语法：
+	tag1->tag2->...->tagn
+	cond(yes)->tagi  
+	cond(no)->tagj  
+
+**流程图 2**:计算z=x+y, 并判断z是否大于20
+
+```flow
+st=>start: 开始
+op=>operation: 输入x
+op2=>operation: 输入y
+op3=>operation: 计算z=x+y
+cond=>condition: z>20?
+e=>end: 输出z
+
+st->op->op2->op3->cond
+cond(yes)->e
+cond(no)->op
+```
+
+**流程图 3**
+
+```flow
+st=>start: Start|past:>http://www.google.com[blank]
+e=>end: End:>http://www.google.com
+op1=>operation: get_hotel_ids|past
+op2=>operation: get_proxy|current
+sub1=>subroutine: get_proxy|current
+op3=>operation: save_comment|current
+op4=>operation: set_sentiment|current
+op5=>operation: set_record|current
+
+cond1=>condition: ids_remain空?
+cond2=>condition: proxy_list空?
+cond3=>condition: ids_got空?
+cond4=>condition: 爬取成功??
+cond5=>condition: ids_remain空?
+
+io1=>inputoutput: ids-remain
+io2=>inputoutput: proxy_list
+io3=>inputoutput: ids-got
+
+st->op1(right)->io1->cond1
+cond1(yes)->sub1->io2->cond2
+cond2(no)->op3
+cond2(yes)->sub1
+cond1(no)->op3->cond4
+cond4(yes)->io3->cond3
+cond4(no)->io1
+cond3(no)->op4
+cond3(yes, right)->cond5
+cond5(yes)->op5
+cond5(no)->cond3
+op5->e
+```
 
 ### 反斜杠转义
 下面前两行是列表，第三行是普通语言。   
