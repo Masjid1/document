@@ -77,7 +77,7 @@ original  |  translation
 *Security*  |  安全
 *Status*  |  状态
 *Help*  |  帮助
-**Contact GitHub*  |  联系GitHub
+*Contact GitHub*  |  联系GitHub
 *API*  |  应用程序接口
 *Training*  |  训练
 *Shop*  |  商店
@@ -97,7 +97,9 @@ Settings
 
 -  [x]  Wikis
 
-        GitHub Wikis is a simple way to let others contribute content. Any GitHub user can create and edit pages to use for documentation, examples, support, or anything you wish.
+        GitHub Wikis is a simple way to let others contribute content. 
+        Any GitHub user can create and edit pages to use for documentation, 
+        examples, support, or anything you wish.
 
 -  [ ]  Restrict editing to collaborators only 
 
@@ -105,11 +107,15 @@ Settings
 
 -  [ ]  Issues
 
-        Issues integrate lightweight task tracking into your repository. Keep projects on track with issue labels and milestones, and reference them in commit messages.
+        Issues integrate lightweight task tracking into your repository. 
+        Keep projects on track with issue labels and milestones, and reference 
+        them in commit messages.
 
 -  [x]  Projects
 
-        Project boards on GitHub help you organize and prioritize your work. You can create project boards for specific feature work, comprehensive roadmaps, or even release checklists.
+        Project boards on GitHub help you organize and prioritize your work. 
+        You can create project boards for specific feature work, comprehensive 
+        roadmaps, or even release checklists.
 
 #### Data services
 ----
