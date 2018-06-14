@@ -797,7 +797,7 @@ x \href{why-equal.html}{=} y^2 + 1.[^2]
 [参考文献1](#reference1)   
 [参考文献2](#user-content-reference2)   
 
-
+*链接带不带"user-content-"前缀都可以（试验所得）*
 
 ### 定义型列表
 注：解释型定义, 开头一个`:` + `Tab` 或 四个空格 
