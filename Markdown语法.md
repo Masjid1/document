@@ -794,7 +794,8 @@ x \href{why-equal.html}{=} y^2 + 1.[^2]
 	[需要跳转的目录] {#1}    // 方括号后保持空格
 
 [This is an H1](#10)   
-[参考文献1](#11)   
+[参考文献1](#reference1)   
+[参考文献2](#user-content-reference2)   
 
 
 
@@ -858,4 +859,5 @@ Markdown
 ---------------
 
 [This is an H1] {#10}   
-<a name="#11">参考文献1</a>    
+<a name="reference1">参考文献1</a>    
+<a name="reference2">参考文献2</a>    
