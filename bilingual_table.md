@@ -122,7 +122,7 @@ Settings
 Use the data from your repository to power these enhanced features.
 -  [ ]  Vulnerability alerts
 
-        Receive alerts for known security vulnerablities found in dependencies.
+        Receive alerts for known security vulnerabilities found in dependencies.
 
 #### Merge button
 --------
